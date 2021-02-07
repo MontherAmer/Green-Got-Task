@@ -29,18 +29,46 @@ export default function Home() {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.wrapper}>
       <Head>
         <title>Create Next App</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <input placeholder='Enter your first name' name='first_name' value={state.first_name} onChange={handleChange} />
-      <h1>hello</h1>
-      <button onClick={handleGet}>GET /api/greetings</button>
-      <input placeholder='Enter your first name' name='firstName' value={state.firstName} onChange={handleChange} />
-      <input placeholder='Enter your last name' name='lastName' value={state.lastName} onChange={handleChange} />
-
-      <button onClick={handlePost}>POST /api/create_user</button>
+      <h1>Green Got</h1>
+      <div className={styles.container}>
+        <input
+          className={styles.inupt}
+          autoComplete='off'
+          placeholder='Enter your first name'
+          name='first_name'
+          value={state.first_name}
+          onChange={handleChange}
+        />
+        <button className={styles.button} onClick={handleGet}>
+          GET /api/greetings
+        </button>
+      </div>
+      <div className={styles.container}>
+        <input
+          className={styles.inupt}
+          autoComplete='off'
+          placeholder='Enter your first name'
+          name='firstName'
+          value={state.firstName}
+          onChange={handleChange}
+        />
+        <input
+          className={styles.inupt}
+          autoComplete='off'
+          placeholder='Enter your last name'
+          name='lastName'
+          value={state.lastName}
+          onChange={handleChange}
+        />
+        <button className={styles.button} onClick={handlePost}>
+          POST /api/create_user
+        </button>
+      </div>
     </div>
   );
 }
