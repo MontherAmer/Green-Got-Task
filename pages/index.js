@@ -11,7 +11,7 @@ export default function Home() {
 
   const handleGet = async () => {
     try {
-      let data = await Axios.get(`/api/greetings?first_name=${state.first_name}`);
+      let { data } = await Axios.get(`/api/greetings?first_name=${state.first_name}`);
       console.log(data);
     } catch (err) {
       console.log(err);
