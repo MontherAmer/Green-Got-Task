@@ -1,3 +1,5 @@
 export default (req, res) => {
-  res.status(200).json({ name: 'John Doe' })
-}
+  let { first_name } = req.query;
+
+  res.status(200).json({ payload: `Hello ${first_name}!` });
+};
