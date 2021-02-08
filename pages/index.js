@@ -5,26 +5,32 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
-  const [state, setState] = useState({ first_name: "", firstName: "", lastName: "" });
+  const [state, setState] = useState({
+    first_name: "",
+    firstName: "",
+    lastName: "",
+    firstResponse: "",
+    secondResponse: "",
+  });
 
   const handleChange = (e) => setState({ ...state, [e.target.name]: e.target.value });
 
   const handleGet = async () => {
     try {
-      let data = await Axios.get(`/api/greetings?first_name=${state.first_name}`);
-      console.log(data);
+      let { data } = await Axios.get(`/api/greetings?first_name=${state.first_name}`);
+      setState({ ...state, firstResponse: data.payload });
     } catch (err) {
-      console.log(err);
+      setState({ ...state, firstResponse: "Error" });
     }
   };
 
   const handlePost = async () => {
     try {
       let { firstName, lastName } = state;
-      let data = await Axios.post(`/api/create_user`, { firstName, lastName });
-      console.log(data);
+      let { data } = await Axios.post(`/api/create_user`, { firstName, lastName });
+      setState({ ...state, secondResponse: data.payload });
     } catch (err) {
-      console.log(err);
+      setState({ ...state, secondResponse: "Error" });
     }
   };
 
@@ -47,6 +53,7 @@ export default function Home() {
         <button className={styles.button} onClick={handleGet}>
           GET /api/greetings
         </button>
+        {state.firstResponse}
       </div>
       <div className={styles.container}>
         <input
@@ -68,6 +75,7 @@ export default function Home() {
         <button className={styles.button} onClick={handlePost}>
           POST /api/create_user
         </button>
+        {state.secondResponse}
       </div>
     </div>
   );
